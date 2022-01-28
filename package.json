@@ -1,0 +1,17 @@
+{
+  "name": "05-clima-app",
+  "version": "1.0.0",
+  "description": "Console app that locates and gives the temperatures at the moment of a country / city using api's",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "David Cisneros",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "colors": "^1.4.0",
+    "dotenv": "^14.2.0",
+    "inquirer": "^8.2.0"
+  }
+}
