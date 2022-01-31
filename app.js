@@ -30,12 +30,11 @@ const main = async() => {
 
                 // Weather
                 const weather = await searches.weather(selPlace.lat, selPlace.lng)
-                console.log(weather)
                 
                 // Return weather results
                 console.log('\n Informacioón de la ciudad/lugar\n'.green)
                 console.log('Ciudad: ', selPlace.name.green )
-                console.log('Lat: ', selPlace.lat )
+                console.log('Lat: ', selPlace.lat)
                 console.log('Lng: ', selPlace.lng)
                 console.log('Clima: ', weather.desc.green )
                 console.log('Temperatura: ', weather.temp)

@@ -3,7 +3,7 @@ const axios = require('axios')
 
 class Searches {
     history = []
-    dbPath = './db/searchingHistory.json'
+    dbPath = './db/history.json'
 
     constructor(){
         this.readDB
@@ -40,7 +40,7 @@ class Searches {
 
     get paramsOpenWeather(){
         return{
-            'access_token': process.env.OPENWEATHER_KEY,
+            'appid': process.env.OPENWEATHER_KEY,
             'units': 'metric',
             'lang': 'es'
         }
@@ -68,13 +68,13 @@ class Searches {
         }
     }
 
-    async weather ( lat , lng ){
+    async weather ( lat , lon ){
 
         try{
             // Instance axios
             const instance = axios.create({
                 baseURL: `https://api.openweathermap.org/data/2.5/`,
-                params: {...this.paramsOpenWeather, lat, lng}
+                params: {...this.paramsOpenWeather, lat, lon}
             })
         
             // resp.data
@@ -108,15 +108,16 @@ class Searches {
         const payload = {
             history: this.history,
         }
-        fs.writeFile(this.dbPath, JSON.stringify( payload ))
+        fs.writeFileSync(this.dbPath, JSON.stringify( payload ))
     }
 
     readDB(){
-        if(!fs.existsSync(this.dbPath)) return
-
+        if(!fs.existsSync(this.dbPath)) return;
+        
         const info = fs.readFileSync(this.dbPath, {encoding: 'utf-8'})
-        data = JSON.parse(info)
+        const data = JSON.parse(info)
         return data.history
+        
     }
 }
 
